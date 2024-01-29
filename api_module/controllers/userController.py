@@ -1,4 +1,4 @@
-from Email_campaign_manager.models import PlusUserDetail
+from Email_campaign_manager.models import PlusUserDetail, PlusContent
 from api_module.response import ResponseFormat
 from rest_framework.views import APIView  
 from rest_framework import status  
@@ -9,6 +9,17 @@ class userControllerFunction(APIView) :
         email_data = request.data.get('email')
         content_id_data = request.data.get('content_id')
         PlusUserDetail(name = name_data , email = email_data, content_id = content_id_data).save()
+        try :
+            return Response(ResponseFormat().plusResposne(200, "DATA_SAVED", ""), status = status.HTTP_200_OK)
+        except :
+            return Response(ResponseFormat().plusResposne(400, "DATA_NOT_SAVED", ""), status = status.HTTP_200_OK)
+
+
+class ContentControllerFunction(APIView) :
+    def post(self, request) :
+        content = request.data.get('content')
+        content_id = request.data.get('content_id')
+        PlusContent(content = content, content_id = content_id).save()
         try :
             return Response(ResponseFormat().plusResposne(200, "DATA_SAVED", ""), status = status.HTTP_200_OK)
         except :

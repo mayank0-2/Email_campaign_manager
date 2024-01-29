@@ -16,8 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api_module.controllers.userController import userControllerFunction
+from api_module.controllers.userController import userControllerFunction, ContentControllerFunction
 
 urlpatterns = [
     path('EnterUserData', userControllerFunction.as_view(), name = "EnterUserData"),
+    path('EnterUserContent', ContentControllerFunction.as_view(), name = "EnterUserContent"),
 ]
