@@ -14,6 +14,7 @@ class PlusUserDetail(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     isactive = models.IntegerField(db_column='isActive', default=1)  # Field name made lowercase.
+    # content_id = models.ForeignKey(PlusContent, on_delete=models.CASCADE)
     content_id = models.IntegerField()
 
     class Meta:
