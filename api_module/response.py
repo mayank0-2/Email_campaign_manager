@@ -1,0 +1,5 @@
+
+
+
+class ResponseFormat() :
+    def returnResponse
