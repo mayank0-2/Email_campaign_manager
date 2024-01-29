@@ -20,3 +20,4 @@ class PlusUserDetail(models.Model):
         managed = False
         db_table = 'plus_user_detail'
 
+

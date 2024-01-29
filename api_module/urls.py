@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api_module.controllers.userController import userControllerFunction, ContentControllerFunction
+from api_module.controllers.userController import userControllerFunction
+from api_module.controllers.contentController import ContentControllerFunction
+from api_module.controllers.contentActionController import ContentAction
 
 urlpatterns = [
     path('EnterUserData', userControllerFunction.as_view(), name = "EnterUserData"),
     path('EnterUserContent', ContentControllerFunction.as_view(), name = "EnterUserContent"),
+    path('Unsubscribe', ContentAction.as_view(), name = "Unsubscribe"),
 ]
