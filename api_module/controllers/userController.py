@@ -8,8 +8,8 @@ class userControllerFunction(APIView) :
         name_data = request.data.get('name')
         email_data = request.data.get('email')
         content_id_data = request.data.get('content_id')
+        PlusUserDetail(name = name_data , email = email_data, content_id = content_id_data).save()
         try :
-            PlusUserDetail(name = name_data , email = email_data, content_id = content_id_data).save()
             return Response(ResponseFormat().plusResposne(200, "DATA_SAVED", ""), status = status.HTTP_200_OK)
         except :
             return Response(ResponseFormat().plusResposne(400, "DATA_NOT_SAVED", ""), status = status.HTTP_200_OK)
