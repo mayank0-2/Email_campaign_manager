@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api_module.urls')),
+    path('api/', include('api_module.urls')), #This route is the base for invoking the api module
 ]

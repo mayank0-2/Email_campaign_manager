@@ -22,8 +22,8 @@ from api_module.controllers.contentActionController import ContentAction
 from api_module.controllers.kafkaController import exposeEndpoint
 
 urlpatterns = [
-    path('EnterUserData', userControllerFunction.as_view(), name = "EnterUserData"),
-    path('EnterUserContent', ContentControllerFunction.as_view(), name = "EnterUserContent"),
-    path('Unsubscribe', ContentAction.as_view(), name = "Unsubscribe"),
-    path('envokeEmailer', exposeEndpoint.as_view(), name = "Emailer")
+    path('EnterUserData', userControllerFunction.as_view(), name = "EnterUserData"),            #endpoint for entering user data
+    path('EnterUserContent', ContentControllerFunction.as_view(), name = "EnterUserContent"),   #endpoint for entering user content
+    path('Unsubscribe', ContentAction.as_view(), name = "Unsubscribe"),                         #endpoint for unsubscribing
+    path('envokeEmailer', exposeEndpoint.as_view(), name = "Emailer")                           #endpoint for sending email
 ]

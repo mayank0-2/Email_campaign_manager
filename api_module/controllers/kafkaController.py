@@ -3,6 +3,7 @@ import socket, json
 from confluent_kafka import Producer, Consumer
 from api_module.controllers.emailerController import send_email
 from rest_framework.views import APIView
+from config import ConfigVariables
 
 class KafkaProducer :
     def __init__(self):
@@ -33,12 +34,12 @@ class KafkaProducer :
 class KafkaConsumer :
     def __init__(self) :
         self.conf = {'bootstrap.servers': 'localhost:9092', 'group.id': 'foo','auto.offset.reset': 'smallest'}
-        self.consumer = Consumer(conf)
+        self.consumer = Consumer(Conf)
     
     def consumer_message(self, topic) :
         self.consumer.subscribe([topic])
         while True :
-            msg = self.consumer.poll(1.0)
+            msg = self.consumer.poll(ConfigVariables().poll_time) #derive from config
             if msg is None :
                 continue
             if msg.error() :
@@ -52,7 +53,7 @@ class KafkaConsumer :
 class exposeEndpoint(APIView):
     def get(self, request) :
 
-        KafkaProducer().producer_message("test", "test")
-        KafkaConsumer().consumer_message("test")
+        KafkaProducer().producer_message(ConfigVariables().topic_name_for_kafka, ConfigVariables().message_for_kafka)
+        KafkaConsumer().consumer_message(ConfigVariables().topic_name_for_kafka)
 
         return Response(ResponseFormat().plusResposne(200, "STAGING_STARTED", ""), status = status.HTTP_200_OK)

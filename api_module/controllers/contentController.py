@@ -5,6 +5,7 @@ from rest_framework.response import Response
 
 class ContentControllerFunction(APIView) :
     def post(self, request) :
+        #add validators for both 
         content = request.data.get('content')
         content_id = request.data.get('content_id')
         try :

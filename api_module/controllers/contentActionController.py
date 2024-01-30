@@ -6,8 +6,7 @@ from rest_framework import status
 
 
 class ContentAction(APIView) :
-
-    def patch(self, request) :
+    def patch(self, request) :          #using patch since partial updation is done here
         user_id = request.GET.get('user_id', None)
         if not user_id :
             return Response(ResponseFormat().plusResposne(400, "MISSING_USER_ID", ""), status = status.HTTP_200_OK)
