@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,11 +80,11 @@ WSGI_APPLICATION = 'Email_campaign_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "Emailer_campaign",
-        'HOST' : '127.0.0.1',
-        'USER' : 'root',
-        'PASSWORD' : '',
-        'PORT' : 3306
+        'NAME': os.getenv('DATABASE_NAME'),
+        'HOST' : os.getenv('DATABASE_HOST'),
+        'USER' : os.getenv('DATABASE_USER'),
+        'PASSWORD' : os.getenv('DATABASE_PASSWORD'),
+        'PORT' : os.getenv('DATABASE_PORT')
     }
 }
 
@@ -132,13 +133,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
-KAFKA_BROKER = '127.0.0.1:9092'
+KAFKA_BROKER = os.getenv('KAFKA_BROKER')
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = False
-EMAIL_PORT = 465
+EMAIL_PORT = os.getenv('EMAILER_PORT')
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'your@djangoapp.com'
-EMAIL_HOST_PASSWORD = 'your password'
+EMAIL_HOST_USER = os.getenv(EMAIL_HOST_USER)
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
