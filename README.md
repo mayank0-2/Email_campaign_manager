@@ -6,3 +6,6 @@ Database structure :
 
 Optimisation : 
   I have used Kafka and celery for the optimisation of the overall process as at first I used a Kafka producer to map the content of the user and push it to the Kafka and created a consumer to poll the data and push this data for processing into the celery queue which will then send the email and in the mean time the Kafka consumer is polling data for another user.
+
+Mehtods to interact :
+  You can interact with admin panel as well as the api endpoint. 
