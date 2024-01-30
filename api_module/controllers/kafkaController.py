@@ -2,7 +2,7 @@ from Email_campaign_manager.models import PlusUserDetail, PlusContent
 import socket, json
 from confluent_kafka import Producer, Consumer
 from api_module.controllers.emailerController import send_email
-
+from rest_framework.views import APIView
 
 class KafkaProducer :
     def __init__(self):
@@ -25,7 +25,8 @@ class KafkaProducer :
             }
             print(message)
             self.producer.produce(topic, key = None, value = json.dumps(message))
-            self.producer.flush()
+            # self.producer.flush()
+        self.producer.close()
 
 
 
@@ -46,3 +47,12 @@ class KafkaConsumer :
             message = msg.value().decode('utf-8')
             send_email.delay(message)
             self.consumer.close()
+
+
+class exposeEndpoint(APIView):
+    def get(self, request) :
+
+        KafkaProducer().producer_message("test", "test")
+        KafkaConsumer().consumer_message("test")
+
+        return Response(ResponseFormat().plusResposne(200, "STAGING_STARTED", ""), status = status.HTTP_200_OK)

@@ -19,9 +19,11 @@ from django.urls import path
 from api_module.controllers.userController import userControllerFunction
 from api_module.controllers.contentController import ContentControllerFunction
 from api_module.controllers.contentActionController import ContentAction
+from api_module.controllers.kafkaController import exposeEndpoint
 
 urlpatterns = [
     path('EnterUserData', userControllerFunction.as_view(), name = "EnterUserData"),
     path('EnterUserContent', ContentControllerFunction.as_view(), name = "EnterUserContent"),
     path('Unsubscribe', ContentAction.as_view(), name = "Unsubscribe"),
+    path('envokeEmailer', exposeEndpoint.as_view(), name = "Emailer")
 ]

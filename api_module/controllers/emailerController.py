@@ -19,8 +19,10 @@ def replace_text(html, message) :
     name = message['name']
     email = message['email']
     content = message['content']
+    url = f'localhost:8000/unsubscribe?user_id={id}'
     html = html.replace("{{ id }}", str(id))
     html = html.replace("{{ name }}", name)
     html = html.replace("{{ email }}", email)
     html = html.replace("{{ content }}", content)
+    html = html.replace("{{ unsubscribe_url }}", "url")
     return html
