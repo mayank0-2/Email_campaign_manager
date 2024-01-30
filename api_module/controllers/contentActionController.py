@@ -3,9 +3,10 @@ from Email_campaign_manager.models import PlusUserDetail
 from api_module.response import ResponseFormat
 from rest_framework.response import Response
 from rest_framework import status  
-
+from api_module.controllers.requestValidatorController import isValidRequest
 
 class ContentAction(APIView) :
+    @isValidRequest
     def patch(self, request) :          #using patch since partial updation is done here
         user_id = request.GET.get('user_id', None)
         if not user_id :

@@ -2,8 +2,10 @@
 from Email_campaign_manager.models import PlusUserDetail, PlusContent
 from rest_framework.views import APIView  
 from rest_framework.response import Response
+from api_module.controllers.requestValidatorController import isValidRequest
 
 class ContentControllerFunction(APIView) :
+    @isValidRequest
     def post(self, request) :
         #add validators for both 
         content = request.data.get('content')

@@ -5,9 +5,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from api_module.controllers.kafkaController import KafkaProducer
 from config import ConfigVariables
-
+from api_module.controllers.requestValidatorController import isValidRequest
 
 class userControllerFunction(APIView) :
+    @isValidRequest
     def post(self, request) :
         #add validators
         name_data = request.data.get('name')
