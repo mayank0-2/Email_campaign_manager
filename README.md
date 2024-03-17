@@ -1,5 +1,5 @@
 # Email_campaign_manager
-This project consists of an Email Campaign Manager
+This project consists of an Email Campaign Manager powered by Kafka for better Performance.
 
 Database structure : 
   We have two database tables which store the data for the newsletter named plus_user_detail and plus_content where in plus_user_detail we store the basic info of the user which consists of storing the email, name, consent of the user and also it contains a foreign key which maps the user to the content in the Plus_content table this structure of database helps us to avoid the storage of redundant data for multiple users.
